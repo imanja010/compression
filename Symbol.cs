@@ -1,22 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Compression
+﻿namespace Compression
 {
     internal class Symbol
     {
         public Symbol(char value, int numberOfTimes, int totalChars)
         {
             Value = value;
-            NumberOfTimes = numberOfTimes;
+            NumberOfOccurrences = numberOfTimes;
             Test = (double)numberOfTimes / (double)totalChars;
         }
-        public int NumberOfTimes { get; set; }
+        public int NumberOfOccurrences { get; set; }
         public char Value { get; set; }
         public double Test { get; set; }
-        public List<bool> TotalValue { get; set; } = new List<bool>();
+        public List<bool> Result { get; set; } = new List<bool>();
     }
 }

@@ -12,7 +12,7 @@
             {
                 result.Add(new Symbol(singleCharGroup.Key, singleCharGroup.Count(), numberOfChars));
             }
-            var sortedList = result.OrderByDescending(x=>x.NumberOfTimes);
+            var sortedList = result.OrderByDescending(x=>x.NumberOfOccurrences);
             var linkedList = new LinkedList<Symbol>(sortedList);
             Traverse(linkedList);
             Print(sortedList);
@@ -22,7 +22,7 @@
         {
             foreach (var res in result)
             {
-                Console.WriteLine(res.Value + " " + res.NumberOfTimes + " " + PrintValues(res.TotalValue));
+                Console.WriteLine(res.Value + " " + res.NumberOfOccurrences + " " + PrintValues(res.Result));
             }
         }
 
@@ -44,21 +44,21 @@
             }
 
             var higherList = new LinkedList<Symbol>();
-            var total = symbols.Select(x => x.NumberOfTimes).Sum();
+            var total = symbols.Select(x => x.NumberOfOccurrences).Sum();
             int current = 0;
             do
             {
                 var first = symbols.First();
                 symbols.RemoveFirst();
-                current += first.NumberOfTimes;
-                first.TotalValue.Add(true);
+                current += first.NumberOfOccurrences;
+                first.Result.Add(true);
                 higherList.AddLast(first);
             }
             while (current < total / 2);
             
             foreach(var symbol in symbols)
             {
-                symbol.TotalValue.Add(false);
+                symbol.Result.Add(false);
             }
 
             Traverse(higherList);
